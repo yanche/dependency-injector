@@ -1,0 +1,7 @@
+.vscode
+*.ts
+!*.d.ts
+*.tgz
+tsconfig.json
+.npmignore
+package-lock.json
