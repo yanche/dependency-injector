@@ -69,10 +69,12 @@ describe("basic DI test", () => {
         assert.strictEqual(c2Init, 1);
     });
 
-    it("instantiate on demand", () => {
+    it("fail on non-injectable dependency", () => {
+        class C0 { }
+
         @injectable
         class C1 {
-            constructor(str: string) { }
+            constructor(c0: C0) { }
         }
 
         @injectable
@@ -91,7 +93,7 @@ describe("basic DI test", () => {
             assert.fail("should throw");
         } catch (err) {
             const msg: string = err.message;
-            assert.ok(msg.includes("String is not injectable"));
+            assert.ok(msg.includes("C0 is not injectable"));
             assert.ok(msg.includes("C3---C2---C1"));
         }
     });
